@@ -1,0 +1,31 @@
+{
+  "name": "contextbroker-toolbox",
+  "version": "0.0.0",
+  "description": "",
+  "bin": "server.js",
+  "scripts": {
+    "example": "./server.js example/config.yaml",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piranna/ContextBroker-Toolbox.git"
+  },
+  "author": "Telefónica I+D",
+  "contributors": [
+    "Jesús Leganés Combarro 'piranna' <piranna@gmail.com>"
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/piranna/ContextBroker-Toolbox/issues"
+  },
+  "homepage": "https://github.com/piranna/ContextBroker-Toolbox#readme",
+  "dependencies": {
+    "amazon-dynamodb-log-stream": "piranna/amazon-dynamodb-log-stream",
+    "context-broker": "piranna/context-broker",
+    "google-worksheet-log-stream": "piranna/google-worksheet-log-stream",
+    "inherits": "^2.0.1",
+    "js-yaml": "^3.5.3",
+    "telegram-bot-log-stream": "piranna/telegram-bot-log-stream"
+  }
+}

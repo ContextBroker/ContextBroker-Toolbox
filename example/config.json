@@ -1,0 +1,44 @@
+{
+  "logLevel": "info",
+  "contextBroker":
+  {
+    "hostname": "example.com",
+    "fiwareService": "MyService",
+    "entities":
+    [
+      {
+        "type": "Room",
+        "id": "Room1"
+      }
+    ],
+    "attributes": ["temperature"],
+    "subscription":
+    {
+      "duration": "P1M",
+      "throttling": ["pressure"],
+      "condValues": "PT5S"
+    },
+    "webhook":
+    {
+      "hostname": "localhost",
+      "port": 12345
+    }
+  },
+  "connectors":
+  [
+    {
+      "type": "google-worksheet-log-stream",
+      "spreadsheetKey": "19pi-EIKBDP-WMKVxqPvFbhf5Hg6kEjpINH5L2lXsf8U",
+      "creds":
+      {
+        "client_email": "piranna@virtual-sylph-119023.iam.gserviceaccount.com",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCCjBaoGxstwrZD\nz+fQ4BL9L9GsUSq4QLkd0XabVk3Bis9zuczCB5QuvX+GgbAWnHpyrqkHiXqn9TTm\nOAIARTJ3md5eKTJApTRIgIdTI+uoao7aHoLuGIVprA9OXArBWk+9D0LTjFMvF5NZ\nWqk+Jo6Ckx6kbkqnl6OEi86bmk1//3ym4x8UeGO2/YGT2kmHsJS5avzOF0/5V+QU\nhfiQUXkx68PIUuAIg6jUXVMr5ynBfq6n2ipm8Z16XkQ40IsB18UXAkyogD115NLi\naZ8JH5L9cOUEgWG9zI3FSLO2mlKFuPaJ9/cewu29Pty8u4N1+heDuRvePyxGW+rE\nE/O7okF9AgMBAAECggEAbzml8BIwJNvZaItRadAPvbGpRdRdvmA+mB4nnI96biSz\nPVkXEFVetjfz2AjUm180oFMZZneGjmVHbcJYShyqs+Xf5H/a9eMLWZ5QLdDT7kjj\nbwlB6lPwDyluXQfkjfpBJ8ZB3HWZRe0jOKUavv4guzVXjSb+6i0zPzHSlRZxY1Rt\n7JCMvE2+RclF6QdtZFb0JeQjx0P24yzT7jixTp2HCcK98XGNcmFZbMQoA7u7qlbu\nOMuxGH0kO73+9yav99rcqXn/VoFRP2aVe+hFhduulnK8Mug7c0c1O7nep3l00yNP\nxQeO7/LEg1UMSqvnpyg6RKf+5zxsHonV1jaNvc+9zQKBgQDi+/HXU63FI/r0n9Tn\nVRSSUTgWe1a7pO3Zg23cXkkomRhO9bZlwHMngU0NI18joh+6uWIbx9B56XyJjvfp\nB8rM5p3j6C2zj/PE/xytH46do46aPfgehyafX3ROZEt1YTG4QMEk+SacmOR6aH9s\nLkB5HQPLNuCVXn6+XIcoepnREwKBgQCTPD7cyVJRIWM5/Yc+0EAslUQNh8a+x466\naAe0EbluSWHORVHrqvfYNcFJwIiA5K2xmtfVYmvfPCnLQU0c6Q9t3DspLAGux4gW\nHYTmcM/BBkUb/VOrZBSLtMweV9Kyl+BApUUy6lg3mrcw2MxH0/umu3YPmpz34OGt\ntpXI7+KFLwKBgHq0ABSLI9ECllNPY+R6VdiTF2Lv4f8mNX30UptiTOIpgL6Ojb+L\nvbSJbYHAsVmt9sEWHjcuWUDOO4iRROswTy1dLdVaWfpLw1enIXVlLc+B70DqZwr5\nvKNDErid9zzJAfu85ax7E6hr7ndNrjRo/Gl8ieR9EgMtRg7aLiZvwF8JAoGAfPXW\nzIA5Uw4pLyCT1qXcsXoGBg3EikrIQkDkuNmKLaYuUmjW/FNggqos4DF+KRbsrB4l\nLL+Zmh9vwUgs8GqFY9JUi78Dtpk2UL7A+uuoB8UQho7cokwQe/n4e5BCDL2F4Jfk\nQTBPqvGupNB7oEK0BHB55QhuTJsaLtsWCTI/aJUCgYBM2feQo1ZbcAAULkVQTUZx\nYBZ5tuqzBUFZ85GwyGCAdHcgg4lwdLMDWJPSL4piulNDcGQkxB1OqIdewn2tJl3X\nefba/zdHitdh0Jo3NCjg1Av+cZHW788+ESEJn79SD10NCOD0Gu1AkWrg60QJe084\nwB+JopbFugx9km/kzRVxLw==\n-----END PRIVATE KEY-----\n"
+      }
+    },
+    {
+      "type": "telegram-bot-log-stream",
+      "token": "token",
+      "chat_id": "chat_id"
+    }
+  ]
+}
