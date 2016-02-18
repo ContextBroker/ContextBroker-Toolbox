@@ -4,6 +4,8 @@
   "description": "",
   "bin": "server.js",
   "scripts": {
+    "coveralls": "scripts/coveralls",
+    "doc": "jsdoc . -d doc",
     "example": "./server.js example/config.yaml",
     "test": "mocha"
   },
@@ -32,7 +34,11 @@
     "telegram-bot-log-stream": "piranna/telegram-bot-log-stream"
   },
   "devDependencies": {
+    "coveralls": "^2.11.6",
+    "jscoverage": "piranna/jscoverage",
+    "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.1.0",
     "nock": "^7.2.1",
     "partly": "^1.0.0"
   }

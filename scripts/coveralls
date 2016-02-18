@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Create instrumented library
+rm -f index-cov.js
+jscoverage index.js
+
+# Replace index.js for instrumented one
+mv index.js index-orig.js
+mv index-cov.js index.js
+
+# Run coveralls
+mocha -R mocha-lcov-reporter | coveralls
+
+# Restore index.js
+rm -f index.js
+mv index-orig.js index.js
