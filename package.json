@@ -5,7 +5,7 @@
   "bin": "server.js",
   "scripts": {
     "example": "./server.js example/config.yaml",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,19 @@
   },
   "homepage": "https://github.com/piranna/ContextBroker-Toolbox#readme",
   "dependencies": {
-    "amazon-dynamodb-log-stream": "piranna/amazon-dynamodb-log-stream",
     "context-broker": "piranna/context-broker",
-    "google-worksheet-log-stream": "piranna/google-worksheet-log-stream",
+    "force-objects-array": "0.0.0",
     "inherits": "^2.0.1",
-    "js-yaml": "^3.5.3",
+    "js-yaml": "^3.5.3"
+  },
+  "optDependencies": {
+    "amazon-dynamodb-log-stream": "piranna/amazon-dynamodb-log-stream",
+    "google-worksheet-log-stream": "piranna/google-worksheet-log-stream",
     "telegram-bot-log-stream": "piranna/telegram-bot-log-stream"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "nock": "^7.2.1",
+    "partly": "^1.0.0"
   }
 }

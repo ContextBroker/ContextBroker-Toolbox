@@ -3,9 +3,9 @@
 var Toolbox = require('./index')
 
 
-var args = process.args
+var argv = process.argv
 
-var config = args[2]
+var config = argv[2]
 if(!config)
 {
   console.error('Usage:',args[1],'<config>')

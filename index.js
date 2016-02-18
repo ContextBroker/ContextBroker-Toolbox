@@ -1,48 +1,49 @@
-var extname      = require('path').extname
 var EventEmitter = require('events')
+var path         = require('path')
 var readFileSync = require('fs').readFileSync
 
-var inherits = require('inherits')
-var yaml     = require('js-yaml')
+var forceObjectsArray = require('force-objects-array')
+var inherits          = require('inherits')
+var yaml              = require('js-yaml')
 
 var ContextBroker = require('context-broker')
 
 
 /**
- * Load the configuration from the defined path
+ * Load the configuration from the defined filepath
  *
- * @param {string} path
+ * @param {string} filepath
  *
  * @return {Object}
  *
  * @throws {TypeError} Unknown file format
  */
-function loadConfig(path)
+function loadConfig(filepath)
 {
-  var ext = extname(path)
+  var ext = path.extname(filepath)
   switch(ext)
   {
     case '.json':
-      return require(path)
+      return require(path.resolve(__dirname, filepath))
 
     case '.yaml':
     case '.yml':
       var options = {schema: yaml.JSON_SCHEMA}
-      return yaml.safeLoad(readFileSync(path, 'utf8'), options)
+      return yaml.safeLoad(readFileSync(filepath, 'utf8'), options)
   }
 
-  throw new TypeError('Unknown file format for "'+path+'"')
+  throw new TypeError('Unknown file format for "'+filepath+'"')
 }
 
 /**
  * Create, initialize and connect a connector to the Context Broker
  *
- * @param {string} name - module name of the connector
  * @param {Object} config - configuration of the connector instance
  */
-function createConnector(contextBroker, name, config, onError)
+function createConnector(config)
 {
-  contextBroker.pipe(require(name)(config)).on('error', onError)
+  this.pipe(require(config.type)(config))
+  .on('error', this.emit.bind(this, 'error'))
 }
 
 
@@ -57,42 +58,26 @@ function createConnector(contextBroker, name, config, onError)
  */
 function Toolbox(config)
 {
-  if(!this instanceof Toolbox) return new Toolbox(config)
+  if(!(this instanceof Toolbox)) return new Toolbox(config)
 
   Toolbox.super_.call(this)
-
-  var onError = this.emit.bind(this, 'error')
-
 
   // Load config
   if(typeof config === 'string') config = loadConfig(config)
 
   // Create context broker
   var contextBroker = ContextBroker(config.contextBroker)
-  .on('error', onError)
+  .on('error', this.emit.bind(this, 'error'))
 
-
-  //
   // Create connectors
+  forceObjectsArray(config.connectors).forEach(createConnector, contextBroker)
+
+
+  //
+  // Public API
   //
 
-  var connectors = config.connectors
-
-  // Array
-  if(connectors instanceof Array)
-    return connectors.forEach(function(connector)
-    {
-      createConnector(contextBroker, connector.type, connector, onError)
-    })
-
-  // Single object
-  var type = connectors.type
-  if(type)
-    return createConnector(contextBroker, type, connectors, onError)
-
-  // Mapping
-  for(var key in connectors)
-    createConnector(contextBroker, key, connectors[key], onError)
+  this.close = contextBroker.close.bind(contextBroker)
 }
 inherits(Toolbox, EventEmitter)
 

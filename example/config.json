@@ -2,7 +2,6 @@
   "logLevel": "info",
   "contextBroker":
   {
-    "hostname": "example.com",
     "fiwareService": "MyService",
     "entities":
     [
@@ -11,17 +10,21 @@
         "id": "Room1"
       }
     ],
-    "attributes": ["temperature"],
-    "subscription":
+    "options":
     {
-      "duration": "P1M",
-      "throttling": ["pressure"],
-      "condValues": "PT5S"
-    },
-    "webhook":
-    {
-      "hostname": "localhost",
-      "port": 12345
+      "hostname": "example.com",
+      "attributes": ["temperature"],
+      "subscription":
+      {
+        "duration": "P1M",
+        "throttling": ["pressure"],
+        "condValues": "PT5S",
+        "webhook":
+        {
+          "hostname": "localhost",
+          "port": 12345
+        }
+      }
     }
   },
   "connectors":

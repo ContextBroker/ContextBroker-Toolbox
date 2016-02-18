@@ -1,22 +1,23 @@
 ---
   logLevel: "info"
   contextBroker:
-    hostname: "example.com"
     fiwareService: "MyService"
     entities:
       -
         type: "Room"
         id: "Room1"
-    attributes:
-      - "temperature"
-    subscription:
-      duration: "P1M"
-      throttling:
-        - "pressure"
-      condValues: "PT5S"
-    webhook:
-      hostname: "localhost"
-      port: 12345
+    options:
+      hostname: "example.com"
+      attributes:
+        - "temperature"
+      subscription:
+        duration: "P1M"
+        throttling:
+          - "pressure"
+        condValues: "PT5S"
+        webhook:
+          hostname: "localhost"
+          port: 12345
   connectors:
     -
       type: "google-worksheet-log-stream"
